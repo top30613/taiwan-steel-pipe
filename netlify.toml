@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+  command = "echo 'Static site - no build needed'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"]}
+  # Note: For pure static, the above is optional. Main purpose is clean headers.
